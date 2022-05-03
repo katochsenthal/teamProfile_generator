@@ -17,7 +17,7 @@ const promptManager = () => {
           if (name) {
             return true;
           } else {
-            console.log("Please enter Manager's name!");
+            console.log("Please enter your name!");
             return false;
           }
         },
@@ -64,12 +64,11 @@ const promptManager = () => {
     ])
     .then(({ name, employeeId, email, officeNumber }) => {
       console.log(
-        `This is user input for name: ${name} ${employeeId} ${email} ${officeNumber}`
+        `This is manager info: ${name} ${employeeId} ${email} ${officeNumber}`
       );
+      promptMenu();
     });
 };
-
-promptManager();
 
 const promptMenu = () => {
   return inquirer
@@ -163,9 +162,86 @@ const promptEngineer = () => {
     ])
     .then(({ name, employeeId, email, github }) => {
       console.log(
-        `This is user input for name: ${name} ${employeeId} ${email} ${github}`
+        `This is engineer info: ${name} ${employeeId} ${email} ${github}`
       );
+      promptMenu();
     });
 };
 
-// promptEngineer();
+const promptIntern = () => {
+  console.log(`
+    ===================
+    Add an Intern
+    ===================
+    `);
+
+  return inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "name",
+        message: "What is the intern's name (Required)",
+        validate: (name) => {
+          if (name) {
+            return true;
+          } else {
+            console.log("Please enter the intern's name!");
+            return false;
+          }
+        },
+      },
+      {
+        type: "input",
+        name: "employeeId",
+        message: "Enter your intern's employee ID",
+        validate: (employeeId) => {
+          if (employeeId) {
+            return true;
+          } else {
+            console.log("Please enter intern's employee ID!");
+            return false;
+          }
+        },
+      },
+      {
+        type: "input",
+        name: "email",
+        message: "Enter the intern's email",
+        validate: (email) => {
+          if (email) {
+            return true;
+          } else {
+            console.log("Please enter intern's email address!");
+            return false;
+          }
+        },
+      },
+      {
+        type: "input",
+        name: "school",
+        message: "What is the intern's school name",
+        validate: (school) => {
+          if (school) {
+            return true;
+          } else {
+            console.log("Please enter inter's school name");
+            return false;
+          }
+        },
+      },
+    ])
+    .then(({ name, employeeId, email, school }) => {
+      console.log(`intern's info: ${name}, ${employeeId}, ${email}, ${school}`);
+      promptMenu();
+    });
+};
+
+const buildTeam = () => {
+  console.log(`
+    ===================
+    Finished building my team!
+    ===================
+    `);
+};
+
+promptManager();
