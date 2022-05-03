@@ -1,6 +1,12 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 
+const teamMembers = {
+  manager: [],
+  engineer: [],
+  intern: [],
+};
+
 const promptManager = () => {
   console.log(`
     =============
