@@ -1,5 +1,6 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
+const { Console } = require("console");
 
 const teamMembers = {
   manager: [],
@@ -68,10 +69,10 @@ const promptManager = () => {
         },
       },
     ])
-    .then(({ name, employeeId, email, officeNumber }) => {
-      console.log(
-        `This is manager info: ${name} ${employeeId} ${email} ${officeNumber}`
-      );
+    .then((data) => {
+      console.log(`This is manager info`, data);
+      teamMembers.manager.push(data);
+      console.log(teamMembers);
       promptMenu();
     });
 };
@@ -166,10 +167,9 @@ const promptEngineer = () => {
         },
       },
     ])
-    .then(({ name, employeeId, email, github }) => {
-      console.log(
-        `This is engineer info: ${name} ${employeeId} ${email} ${github}`
-      );
+    .then((data) => {
+      console.log(`This is engineer info:`, data);
+      teamMembers.engineer.push(data);
       promptMenu();
     });
 };
@@ -236,8 +236,9 @@ const promptIntern = () => {
         },
       },
     ])
-    .then(({ name, employeeId, email, school }) => {
-      console.log(`intern's info: ${name}, ${employeeId}, ${email}, ${school}`);
+    .then((data) => {
+      console.log(`intern's info:`, data);
+      teamMembers.intern.push(data);
       promptMenu();
     });
 };
@@ -247,6 +248,7 @@ const buildTeam = () => {
     ===================
     Finished building my team!
     ===================
+
     `);
 };
 
