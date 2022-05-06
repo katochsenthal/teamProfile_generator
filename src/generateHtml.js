@@ -1,4 +1,4 @@
-function generateHtml(data) {
+const generateHtml = (data) => {
   const html = [];
 
   const generateManager = (manager) => {
@@ -53,7 +53,17 @@ function generateHtml(data) {
     html.push(internHtml);
   };
 
-  fs.writeFileSync("./output/index.html", html);
-}
+  for (let i = 0; i < data.length; i++) {
+    if (data[i].getRole() === "Manager") {
+      generateManager(data[i]);
+    }
+    if (data[i].getRole() === "Engineer") {
+      generateEngineer(data[i]);
+    }
+    if (data[i].getRole() === "Intern") {
+      generateIntern(data[i]);
+    }
+  }
 
-module.exports = { generateHtml };
+  return html.join("");
+};
