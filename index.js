@@ -1,4 +1,9 @@
 const inquirer = require("inquirer");
+const Manager = require("./src/lib/Manager");
+const Engineer = require("./src/lib/Engineer");
+const Intern = require("./src/lib/Intern");
+const generateHtml = require("./src/generateHtml");
+const indexHtml = require("./output/index.html");
 const fs = require("fs");
 const { Console } = require("console");
 
@@ -71,7 +76,13 @@ const promptManager = () => {
     ])
     .then((data) => {
       console.log(`This is manager info`, data);
-      teamMembers.manager.push(data);
+      const manager = new Manager(
+        data.name,
+        data.employeeId,
+        data.email,
+        data.officeNumber
+      );
+      teamMembers.push(manager);
       console.log(teamMembers);
       promptMenu();
     });
@@ -169,7 +180,13 @@ const promptEngineer = () => {
     ])
     .then((data) => {
       console.log(`This is engineer info:`, data);
-      teamMembers.engineer.push(data);
+      const engineer = new Engineer(
+        data.name,
+        data.employeeId,
+        data.email,
+        data.github
+      );
+      teamMembers.push(engineer);
       promptMenu();
     });
 };
@@ -238,17 +255,24 @@ const promptIntern = () => {
     ])
     .then((data) => {
       console.log(`intern's info:`, data);
-      teamMembers.intern.push(data);
+      const intern = new Intern(
+        data.name,
+        data.employeeId,
+        data.email,
+        data.school
+      );
+      teamMembers.push(intern);
       promptMenu();
     });
 };
 
-const buildTeam = () => {
+const buildTeam = (data) => {
+  const { manager, engineer, intern } = data;
   console.log(`
     ===================
     Finished building my team!
     ===================
-
+    ${manager}, ${engineer}, ${intern}
     `);
 };
 
