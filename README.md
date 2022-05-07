@@ -34,11 +34,11 @@ Steps:
 
 ## Usage
 
-For Demo click [here](https://drive.google.com/file/d/1Dd0IZUzvWuVgGySeHDBO-GOxs-Wkozjx/view?usp=sharing)
+For Demo click [here](https://drive.google.com/file/d/11AbZh8YTipDyocOAsdWFQ7837d2ZrKl8/view?usp=sharing)
 
 To run the application use "node index" from the terminal.
 
-To test object classes use "npm test" from the terminal
+To test object classes use "npm test" from the terminal. All tests passed refer image below.
 
 Preview:
 
