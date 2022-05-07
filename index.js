@@ -72,16 +72,11 @@ const promptManager = () => {
     ])
     .then((data) => {
       console.log(`This is manager info`, data);
-      // const manager = new Manager(
-      //   data.name,
-      //   data.employeeId,
-      //   data.email,
-      //   data.officeNumber
-      // );
+
       teamMembers.push(
         new Manager(data.name, data.employeeId, data.email, data.officeNumber)
       );
-      console.log(teamMembers);
+
       promptMenu();
     });
 };
@@ -178,16 +173,11 @@ const promptEngineer = () => {
     ])
     .then((data) => {
       console.log(`This is engineer info:`, data);
-      // const engineer = new Engineer(
-      //   data.name,
-      //   data.employeeId,
-      //   data.email,
-      //   data.github
-      // );
+
       teamMembers.push(
         new Engineer(data.name, data.employeeId, data.email, data.github)
       );
-      console.log(teamMembers);
+
       promptMenu();
     });
 };
@@ -256,12 +246,6 @@ const promptIntern = () => {
     ])
     .then((data) => {
       console.log(`intern's info:`, data);
-      // const intern = new Intern(
-      //   data.name,
-      //   data.employeeId,
-      //   data.email,
-      //   data.school
-      // );
       teamMembers.push(
         new Intern(data.name, data.employeeId, data.email, data.school)
       );
@@ -270,7 +254,6 @@ const promptIntern = () => {
 };
 
 const buildTeam = () => {
-  // const { manager, engineer, intern } = data;
   console.log(`
     ===================
     Finished building my team!
