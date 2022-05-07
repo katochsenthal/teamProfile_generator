@@ -3,15 +3,11 @@ const Manager = require("./src/lib/Manager");
 const Engineer = require("./src/lib/Engineer");
 const Intern = require("./src/lib/Intern");
 const generateHtml = require("./src/generateHtml");
-const indexHtml = require("./output/index.html");
 const fs = require("fs");
+const path = require("path");
 const { Console } = require("console");
 
-const teamMembers = {
-  manager: [],
-  engineer: [],
-  intern: [],
-};
+const teamMembers = [];
 
 const promptManager = () => {
   console.log(`
@@ -76,13 +72,15 @@ const promptManager = () => {
     ])
     .then((data) => {
       console.log(`This is manager info`, data);
-      const manager = new Manager(
-        data.name,
-        data.employeeId,
-        data.email,
-        data.officeNumber
+      // const manager = new Manager(
+      //   data.name,
+      //   data.employeeId,
+      //   data.email,
+      //   data.officeNumber
+      // );
+      teamMembers.push(
+        new Manager(data.name, data.employeeId, data.email, data.officeNumber)
       );
-      teamMembers.push(manager);
       console.log(teamMembers);
       promptMenu();
     });
@@ -180,13 +178,16 @@ const promptEngineer = () => {
     ])
     .then((data) => {
       console.log(`This is engineer info:`, data);
-      const engineer = new Engineer(
-        data.name,
-        data.employeeId,
-        data.email,
-        data.github
+      // const engineer = new Engineer(
+      //   data.name,
+      //   data.employeeId,
+      //   data.email,
+      //   data.github
+      // );
+      teamMembers.push(
+        new Engineer(data.name, data.employeeId, data.email, data.github)
       );
-      teamMembers.push(engineer);
+      console.log(teamMembers);
       promptMenu();
     });
 };
@@ -255,25 +256,31 @@ const promptIntern = () => {
     ])
     .then((data) => {
       console.log(`intern's info:`, data);
-      const intern = new Intern(
-        data.name,
-        data.employeeId,
-        data.email,
-        data.school
+      // const intern = new Intern(
+      //   data.name,
+      //   data.employeeId,
+      //   data.email,
+      //   data.school
+      // );
+      teamMembers.push(
+        new Intern(data.name, data.employeeId, data.email, data.school)
       );
-      teamMembers.push(intern);
       promptMenu();
     });
 };
 
-const buildTeam = (data) => {
-  const { manager, engineer, intern } = data;
+const buildTeam = () => {
+  // const { manager, engineer, intern } = data;
   console.log(`
     ===================
     Finished building my team!
     ===================
-    ${manager}, ${engineer}, ${intern}
     `);
+
+  fs.writeFileSync(
+    path.join(path.resolve(__dirname, "dist"), "template.html"),
+    generateHtml(teamMembers)
+  );
 };
 
 promptManager();

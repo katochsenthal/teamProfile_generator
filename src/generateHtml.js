@@ -67,3 +67,5 @@ const generateHtml = (data) => {
 
   return html.join("");
 };
+
+module.exports = { generateHtml };
